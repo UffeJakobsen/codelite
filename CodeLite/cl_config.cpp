@@ -286,8 +286,8 @@ void clConfig::Write(const wxString& name, bool value)
 bool clConfig::Read(const wxString& name, bool defaultValue)
 {
 #if CL_USE_NATIVEBOOK
-    if(name == "UseCustomBaseColour")
-        return false;
+    //if(name == "UseCustomBaseColour")
+    //    return false;
 #endif
     JSONItem general = GetGeneralSetting();
     if(general.namedObject(name).isBool()) {

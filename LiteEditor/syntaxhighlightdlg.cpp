@@ -820,8 +820,9 @@ bool SyntaxHighlightDlg::IsRestartRequired() const { return false; }
 void SyntaxHighlightDlg::OnUseCustomBaseColourUI(wxUpdateUIEvent& event)
 {
 #if CL_USE_NATIVEBOOK
-    event.Enable(false);
-    event.Check(false);
+    event.Enable(true);
+    //event.Enable(false);
+    //event.Check(false);
 #else
     event.Enable(true);
 #endif
