@@ -214,6 +214,13 @@ void OutputPane::OnBuildStarted(clBuildEvent& e)
 
 void OutputPane::OnBuildEnded(clBuildEvent& e)
 {
+    std::cout << __func__ << ": " << e.IsRunning() << e.IsCleanLog() << e.HasFlag(e.kClean) << e.HasFlag(e.kBuild) << ":" << e.GetErrorCount() << ": " << e.GetWarningCount() << std::endl;
+
+    if (e.HasFlag(e.kBuild) && !(e.GetErrorCount() || e.GetWarningCount())) {
+        wxAuiPaneInfo& info = PluginManager::Get()->GetDockingManager()->GetPane(wxT("Output View"));
+        DockablePaneMenuManager::HackHidePane(true, info, PluginManager::Get()->GetDockingManager());
+    }
+
     e.Skip();
     m_buildInProgress = false;
 }

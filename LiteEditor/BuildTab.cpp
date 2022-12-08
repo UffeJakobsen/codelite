@@ -116,6 +116,8 @@ void BuildTab::OnBuildAddLine(clBuildEvent& e)
 
 void BuildTab::OnBuildEnded(clBuildEvent& e)
 {
+    std::cout << __func__ << ": " << e.IsRunning() << e.IsCleanLog() << e.HasFlag(e.kClean) << e.HasFlag(e.kBuild) << ":" << e.GetErrorCount() << ": " << e.GetWarningCount() << std::endl;
+
     e.Skip();
     m_buildInProgress = false;
     ProcessBuffer(true);
@@ -130,6 +132,7 @@ void BuildTab::OnBuildEnded(clBuildEvent& e)
 
     // notify the plugins that the build has ended
     clBuildEvent build_ended_event(wxEVT_BUILD_ENDED);
+    build_ended_event.SetFlag(build_ended_event.kBuild, true);
     build_ended_event.SetErrorCount(m_error_count);
     build_ended_event.SetWarningCount(m_warn_count);
     EventNotifier::Get()->AddPendingEvent(build_ended_event);
