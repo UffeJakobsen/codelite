@@ -47,6 +47,10 @@ DiffFoldersFrame::DiffFoldersFrame(wxWindow* parent)
     m_toolbar->Bind(wxEVT_TOOL, &DiffFoldersFrame::OnUpFolder, this, XRCID("diff-up-folder"));
     m_toolbar->Bind(wxEVT_UPDATE_UI, &DiffFoldersFrame::OnUpFolderUI, this, XRCID("diff-up-folder"));
 
+    // Not a menu item, but this is a convenient place to bind ESC to Close()
+    Bind(wxEVT_CHAR_HOOK, &DiffFoldersFrame::OnCharHook, this);
+
+
     ::clSetTLWindowBestSizeAndPosition(this);
 
     // Load persistent items
@@ -64,6 +68,15 @@ void DiffFoldersFrame::OnClose(wxCommandEvent& event)
     wxUnusedVar(event);
     Close();
 }
+
+void DiffFoldersFrame::OnCharHook(wxKeyEvent& event)
+{
+    event.Skip();
+    if(event.GetKeyCode() == WXK_ESCAPE) {
+        Close();
+    }
+}
+
 
 void DiffFoldersFrame::OnNewCmparison(wxCommandEvent& event)
 {

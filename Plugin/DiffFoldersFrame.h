@@ -121,6 +121,7 @@ protected:
 
 protected:
     virtual void OnClose(wxCommandEvent& event);
+    virtual void OnCharHook(wxKeyEvent& event);
     virtual void OnNewCmparison(wxCommandEvent& event);
     virtual void OnItemActivated(wxDataViewEvent& event);
     virtual void OnItemContextMenu(wxDataViewEvent& event);
