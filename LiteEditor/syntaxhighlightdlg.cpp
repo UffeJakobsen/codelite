@@ -140,6 +140,7 @@ SyntaxHighlightDlg::SyntaxHighlightDlg(wxWindow* parent)
     m_toolbar->AddTool(XRCID("revert_changes"), _("Restore"), images->LoadBitmap("file_reload", 24));
     m_toolbar->AddTool(XRCID("import_eclipse_theme"), _("Import"), images->LoadBitmap("file_open", 24));
     m_toolbar->Realize();
+    m_toolbar->Bind(wxEVT_KEY_DOWN, &SyntaxHighlightDlg::OnKeyDown, this);
     m_toolbar->Bind(wxEVT_TOOL, &SyntaxHighlightDlg::OnNewTheme, this, wxID_NEW);
     m_toolbar->Bind(wxEVT_TOOL, &SyntaxHighlightDlg::OnExportSelective, this, wxID_SAVE);
     m_toolbar->Bind(wxEVT_TOOL, &SyntaxHighlightDlg::OnExportAll, this, XRCID("export_all"));
@@ -592,6 +593,15 @@ void SyntaxHighlightDlg::UpdateTextSelectionColours()
     ColoursAndFontsManager::Get().SetThemeTextSelectionColours(m_lexer->GetThemeName(),
                                                                m_colourPickerSelTextBgColour->GetColour(),
                                                                m_colourPickerSelTextFgColour->GetColour(), true);
+}
+
+void SyntaxHighlightDlg::OnKeyDown(wxCommandEvent& event)
+{
+    event.Skip();
+    if(event.GetKeyCode() == WXK_ESCAPE) {
+        event.Skip(false);
+        Close();
+    }
 }
 
 void SyntaxHighlightDlg::OnNewTheme(wxCommandEvent& event)
