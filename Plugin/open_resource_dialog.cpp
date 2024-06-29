@@ -243,8 +243,11 @@ void OpenResourceDialog::DoPopulateTags(const std::vector<LSP::SymbolInformation
 
     for(const LSP::SymbolInformation& symbol : symbols) {
         if(!MatchesFilter(symbol.GetName())) {
+std::cout << "DoPopulateTags:" << __LINE__ << ": DROP: " << symbol.GetName() << ": " <<  symbol.GetContainerName() << ": " << symbol.GetLocation().GetPath() << std::endl;
             continue;
         }
+std::cout << "DoPopulateTags:" << __LINE__ << ": MATCH: " << symbol.GetName() << ": " <<  symbol.GetContainerName() << ": " << symbol.GetLocation().GetPath() << std::endl;
+
 
         // keep the fullpath
         DoAppendLine(symbol.GetName(), symbol.GetContainerName(), false,
@@ -316,6 +319,8 @@ void OpenResourceDialog::OpenSelection(const OpenResourceDialogItemData& selecti
     }
 
     clDEBUG() << "Opening editor:" << selection.m_file << ":" << selection.m_line << ":" << selection.m_column << endl;
+
+std::cout << "Opening editor:" << selection.m_file << ":" << selection.m_line << ":" << selection.m_column << std::endl;
 
     auto callback = [=](IEditor* editor) {
         editor->GetCtrl()->ClearSelections();

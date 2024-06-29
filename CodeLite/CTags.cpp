@@ -76,7 +76,7 @@ bool CTags::DoGenerate(const wxString& filesContent, const wxString& codelite_in
         fields_cxx << "+{macrodef}";
     }
 
-    options_arr = { "--extras=-p",       "--excmd=pattern",      "--sort=no",
+    options_arr = { "--extras=-p",       "--excmd=pattern",      "--sort=no",    // "--links=yes",
                     "--fields=aKmSsnit", "--language-force=c++", fields_cxx };
 
     wxString kinds_string;
@@ -142,6 +142,7 @@ bool CTags::DoGenerate(const wxString& filesContent, const wxString& codelite_in
     long elapsed = sw.Time();
 
     clDEBUG() << "Parsing took:" << (elapsed / 1000) << "secs," << (elapsed % 1000) << "ms" << endl;
+    clDEBUG() << "Output size: " << output->size() << endl;
     clDEBUG() << "Generating ctags files... Success" << endl;
     return true;
 }
@@ -201,9 +202,12 @@ size_t CTags::ParseFiles(const std::vector<wxString>& files, const wxString& cod
         }
     }
 
-    if(tags.empty()) {
+    clDEBUG() << "tags: " << tags.size() << " ctags:" << lines.size() << "/" << content.size() << endl;
+
+    if (tags.empty()) {
         clDEBUG() << "0 tags, ctags output:" << content << endl;
     }
+
     return tags.size();
 }
 
@@ -263,7 +267,9 @@ size_t CTags::ParseLocals(const wxFileName& filename, const wxString& buffer, co
         tag->SetFile(filename.GetFullPath());
     }
 
-    if(tags.empty()) {
+    clDEBUG() << "tags: " << tags.size() << " ctags:" << lines.size() << "/" << content.size() << endl;
+
+    if (tags.empty()) {
         clDEBUG() << "0 local tags, ctags output:" << content << endl;
     }
     return tags.size();
