@@ -22,6 +22,13 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
+
+#if (0)
+#define USE_CL_REALPATH (1)
+#else
+#define USE_CL_REALPATH (0)
+#endif
+
 #include "globals.h"
 
 #include "AsyncProcess/asyncprocess.h"
@@ -103,6 +110,52 @@
 #if USE_SFTP
 #include "SFTPBrowserDlg.h"
 #endif
+
+static bool bUseCLRealPath = true;
+
+
+/*
+class MyGolbalsEvent: public wxEvent
+{
+}
+*/
+
+// https://docs.wxwidgets.org/3.0/overview_events.html#overview_events_custom_ownclass
+
+//static clCommandEventFunction OnFSWSettingsLoadedSaved(clCommandEvent& e)
+//void clFileSystemWorkspace::OnCloseWorkspace(clCommandEvent& event)
+
+static void OnFSWSettingsLoadedSaved(clCommandEvent& e)
+{
+std::cout << __func__ << ":" << __LINE__ << ": " << std::endl;
+
+    e.Skip();
+    bUseCLRealPath = (bUseCLRealPath ? false : true);
+}
+
+class Startup_init
+{
+    Startup_init()
+    {
+std::cout << __func__ << ":" << __LINE__ << ": " << std::endl;
+
+        //EventNotifier::Get()->Connect(wxEVT_FSW_SETTINGS_LOADED, clCommandEventHandler(OnFSWSettingsLoadedSaved), NULL, NULL);
+        EventNotifier::Get()->Bind(wxEVT_FSW_SETTINGS_LOADED, &OnFSWSettingsLoadedSaved, NULL);
+        EventNotifier::Get()->Bind(wxEVT_FSW_SETTINGS_SAVED, &OnFSWSettingsLoadedSaved, NULL);
+
+    }
+
+    ~Startup_init()
+    {
+std::cout << __func__ << ":" << __LINE__ << ": " << std::endl;
+
+        EventNotifier::Get()->Unbind(wxEVT_FSW_SETTINGS_LOADED, &OnFSWSettingsLoadedSaved, NULL);
+        EventNotifier::Get()->Unbind(wxEVT_FSW_SETTINGS_SAVED, &OnFSWSettingsLoadedSaved, NULL);
+    }
+};
+
+static Startup_init startup_run_on_init();
+
 
 const wxEventType wxEVT_COMMAND_CL_INTERNAL_0_ARGS = ::wxNewEventType();
 const wxEventType wxEVT_COMMAND_CL_INTERNAL_1_ARGS = ::wxNewEventType();
@@ -916,7 +969,7 @@ wxFileName wxReadLink(const wxFileName& filename)
     if (wxIsFileSymlink(filename)) {
 #if defined(__WXGTK__)
         // Use 'realpath' on Linux, otherwise this breaks on relative symlinks, and (untested) on symlinks-to-symlinks
-        return wxFileName(CLRealPath(filename.GetFullPath()));
+        return wxFileName(CLRealPath_forced(filename.GetFullPath()));
 
 #else  // OSX
         wxFileName realFileName;
@@ -936,10 +989,20 @@ wxFileName wxReadLink(const wxFileName& filename)
 #endif
 }
 
+wxString CLRealPath_forced(const wxString& filepath) // This is readlink on steroids: it also makes-absolute, and dereferences
+                                                     // any symlinked dirs in the path
+{
+    return FileUtils::RealPath(filepath);
+}
+
 wxString CLRealPath(const wxString& filepath) // This is readlink on steroids: it also makes-absolute, and dereferences
                                               // any symlinked dirs in the path
 {
-    return FileUtils::RealPath(filepath);
+#if (USE_CL_REALPATH)
+    return CLRealPath_forced(filepath);
+#else
+    return filepath;
+#endif
 }
 
 int wxStringToInt(const wxString& str, int defval, int minval, int maxval)
