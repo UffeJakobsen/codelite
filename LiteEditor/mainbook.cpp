@@ -432,7 +432,7 @@ int MainBook::FindEditorIndexByFullPath(const wxString& fullpath)
 {
 #ifdef __WXGTK__
     // On gtk either fileName or the editor filepath (or both) may be (or their paths contain) symlinks
-    wxString fileNameDest = CLRealPath(fullpath);
+    wxString fileNameDest = CLRealPath(fullpath, true);
 #endif
 
     for (size_t i = 0; i < m_book->GetPageCount(); ++i) {
@@ -466,7 +466,7 @@ int MainBook::FindEditorIndexByFullPath(const wxString& fullpath)
 
 #if defined(__WXGTK__)
                 // Try again, dereferencing the editor fpath
-                wxString editorDest = CLRealPath(unixStyleFile);
+                wxString editorDest = CLRealPath(unixStyleFile, true);
                 if (editorDest.Cmp(fullpath) == 0 || editorDest.Cmp(fileNameDest) == 0) {
                     return i;
                 }
@@ -595,6 +595,13 @@ clEditor* MainBook::OpenFile(const wxString& file_name, const wxString& projectN
                              int bmp /*= wxNullBitmap*/, const wxString& tooltip /* wxEmptyString */)
 {
     wxFileName fileName(CLRealPath(file_name));
+
+    if (fileName.IsRelative()) {
+        if (clWorkspaceManager::Get().IsWorkspaceOpened()) {
+            wxFileName wsPath = clWorkspaceManager::Get().GetWorkspace()->GetDir();
+            fileName.MakeAbsolute(wsPath.GetFullPath());
+        }
+    }
     fileName.MakeAbsolute();
 
 #ifdef __WXMSW__
@@ -1746,7 +1753,7 @@ WelcomePage* MainBook::GetWelcomePage(bool createIfMissing)
 
 clEditor* MainBook::OpenFileAsync(const wxString& file_name, std::function<void(IEditor*)>&& callback)
 {
-    wxString real_path = CLRealPath(file_name);
+    wxString real_path = CLRealPath(file_name, true);
     auto editor = FindEditor(real_path);
     if (editor) {
         push_callback(std::move(callback), real_path);
@@ -1757,7 +1764,7 @@ clEditor* MainBook::OpenFileAsync(const wxString& file_name, std::function<void(
             m_book->SetSelection(index);
         }
     } else {
-        editor = OpenFile(real_path);
+        editor = OpenFile(file_name);
         if (editor) {
             push_callback(std::move(callback), real_path);
         }
@@ -1822,7 +1829,7 @@ void MainBook::OnIdle(wxIdleEvent& event)
     auto editor = GetActiveEditor();
     CHECK_PTR_RET(editor);
 
-    execute_callbacks_for_file(CLRealPath(editor->GetFileName().GetFullPath()));
+    execute_callbacks_for_file(CLRealPath(editor->GetFileName().GetFullPath(), true));
 }
 
 void MainBook::OnEditorModified(clCommandEvent& event) { event.Skip(); }
@@ -1830,3 +1837,4 @@ void MainBook::OnEditorModified(clCommandEvent& event) { event.Skip(); }
 void MainBook::OnEditorSaved(clCommandEvent& event) { event.Skip(); }
 
 void MainBook::OnSessionLoaded(clCommandEvent& event) { event.Skip(); }
+
