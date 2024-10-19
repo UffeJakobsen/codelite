@@ -48,6 +48,9 @@ public:
 
 LSP::WorkspaceSymbolRequest::WorkspaceSymbolRequest(const wxString& query)
 {
+
+std::cout << "WorkspaceSymbolRequest:" << __LINE__ << ": " << query << std::endl;
+
     SetMethod("workspace/symbol");
     // set the params
     m_params.reset(new WorkspaceSymbolParams());
@@ -88,6 +91,9 @@ void LSP::WorkspaceSymbolRequest::OnResponse(const LSP::ResponseMessage& respons
         SymbolInformation si;
         si.FromJSON(result[i]);
         symbols.push_back(si);
+
+std::cout << "WorkspaceSymbolRequest::OnResponse:" << __LINE__ << ": " << si.GetName() << std::endl;
+
     }
 
     LOG_IF_TRACE { LSP_TRACE() << symbols_event.GetSymbolsInformation() << endl; }
