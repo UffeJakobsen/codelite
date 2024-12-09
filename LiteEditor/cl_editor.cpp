@@ -1706,6 +1706,7 @@ bool clEditor::SaveToFile(const wxFileName& fileName)
     // Make sure that the folder does exist
     intermediateFile.Mkdir(wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
     intermediateFile.SetFullName("~" + fileName.GetFullName() + "." + ::wxGetUserId());
+    std::cout << "SaveToFile:" << __LINE__ << ": " << fileName.GetFullPath() << " " << intermediateFile.GetFullPath() << std::endl;
 
     {
         // Ensure that a temporary file with this name does not exist
