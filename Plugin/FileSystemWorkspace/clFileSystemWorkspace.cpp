@@ -244,6 +244,8 @@ void clFileSystemWorkspace::OnBuildEnded(clBuildEvent& event) { event.Skip(); }
 
 void clFileSystemWorkspace::OnOpenWorkspace(clCommandEvent& event)
 {
+std::cout << __func__ << ":" << __LINE__ << ": " << std::endl;
+
     event.Skip();
     if (OpenWorkspace(event.GetFileName())) {
         event.Skip(false);
@@ -254,6 +256,8 @@ void clFileSystemWorkspace::OnOpenWorkspace(clCommandEvent& event)
 
 void clFileSystemWorkspace::OnCloseWorkspace(clCommandEvent& event)
 {
+std::cout << __func__ << ":" << __LINE__ << ": " << std::endl;
+
     event.Skip();
     if (CloseWorkspace()) {
         event.Skip(false);
@@ -1148,6 +1152,8 @@ bool clFileSystemWorkspace::CloseWorkspace()
 void clFileSystemWorkspace::OnReloadWorkspace(clCommandEvent& event)
 {
     if (!IsOpen()) {
+std::cout << __func__ << ":" << __LINE__ << ": " << std::endl;
+
         event.Skip();
         return;
     }

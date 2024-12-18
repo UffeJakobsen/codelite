@@ -59,6 +59,7 @@ std::pair<JSONItem, JSONItem> clFileSystemWorkspaceConfig::ToJSON() const
     shared.addProperty("file_extensions", m_fileExtensions);
     shared.addProperty("excludeFilesPattern", m_excludeFilesPattern);
     shared.addProperty("excludePaths", m_excludePaths);
+    shared.addProperty("resolveSymlinks", m_resolveSymlinks);
     shared.addProperty("debugger", m_debugger);
 
     // Local items
@@ -95,6 +96,7 @@ void clFileSystemWorkspaceConfig::FromSharedJSON(const JSONItem& json)
     m_fileExtensions = json.namedObject("file_extensions").toString(m_fileExtensions);
     m_excludeFilesPattern = json.namedObject("excludeFilesPattern").toString(m_excludeFilesPattern);
     m_excludePaths = json.namedObject("excludePaths").toString(m_excludePaths);
+    m_resolveSymlinks = json.namedObject("resolveSymlinks").toBool(m_resolveSymlinks);
     m_debugger = json.namedObject("debugger").toString(m_debugger);
 }
 
