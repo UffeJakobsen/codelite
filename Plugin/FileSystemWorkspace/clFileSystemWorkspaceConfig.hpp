@@ -47,6 +47,7 @@ protected:
     wxString m_debuggerRemotePort       = "2345";
     
     wxArrayString m_lastExecutables;
+    bool m_resolveSymlinks = false;
 
 public:
     typedef wxSharedPtr<clFileSystemWorkspaceConfig> Ptr_t;
@@ -113,6 +114,8 @@ public:
             m_flags &= ~kRemoteBuild;
         }
     }
+    bool GetResolveSymlinks() const { return m_resolveSymlinks; }
+    void SetResolveSymlinks(bool b) { m_resolveSymlinks = b; }
 
     wxArrayString ExpandUserCompletionFlags(const wxString& workingDirectory, clBacktickCache::ptr_t backticks,
                                             bool withPrefix = false) const;

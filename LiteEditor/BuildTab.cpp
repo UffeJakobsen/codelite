@@ -334,6 +334,7 @@ void BuildTab::OnLineActivated(wxDataViewEvent& e)
                 }
                 editor->SetActive();
             };
+std::cout << __func__ << ":" << __LINE__ << ": " << cd->match_pattern.file_path << ":" << line_number << ":" << column << std::endl;
             clGetManager()->OpenFileAndAsyncExecute(fn.GetFullPath(), std::move(cb));
         }
     }
