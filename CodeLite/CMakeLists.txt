@@ -33,6 +33,8 @@ target_include_directories(
     libcodelite
     PUBLIC "${CL_SRC_ROOT}/sdk/wxsqlite3/include" "${CL_SRC_ROOT}/CodeLite" "${CL_SRC_ROOT}/CodeLite/ssh"
            "${CL_SRC_ROOT}/PCH"
+           "${CL_SRC_ROOT}/Interfaces"
+           "${CL_SRC_ROOT}/Plugin"
     PRIVATE "${CL_SRC_ROOT}/submodules/asio/asio/include" "${CL_SRC_ROOT}/submodules/websocketpp")
 # Macros
 if(WIN32)
