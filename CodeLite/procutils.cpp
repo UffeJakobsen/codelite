@@ -491,13 +491,13 @@ int ProcUtils::SafeExecuteShellCommand(const wxString& command,
         full_command << "cd " << working_directory << " && ";
     }
     full_command << command;
-    WrapInShell(full_command);
-    return SafeExecuteCommand(full_command, output, shutdown_flag);
+    return SafeExecuteCommand(full_command, output, shutdown_flag, true);
 }
 
 int ProcUtils::SafeExecuteCommand(const wxString& command,
                                   wxArrayString& output,
-                                  std::shared_ptr<std::atomic_bool> shutdown_flag)
+                                  std::shared_ptr<std::atomic_bool> shutdown_flag,
+                                  bool use_shell)
 {
 #ifdef __WXMSW__
     auto argv = StringUtils::BuildArgv(command);
@@ -516,7 +516,7 @@ int ProcUtils::SafeExecuteCommand(const wxString& command,
         return !shutdown_flag->load();
     };
 
-    int exit_code = assistant::Process::RunProcessAndWait(argv_std, output_cb);
+    int exit_code = assistant::Process::RunProcessAndWait(argv_std, output_cb, use_shell);
     wxString out_str = wxString::FromUTF8(accumlated_output);
     LOG_IF_TRACE
     {
@@ -528,7 +528,11 @@ int ProcUtils::SafeExecuteCommand(const wxString& command,
     output = ::wxStringTokenize(out_str, "\n", wxTOKEN_STRTOK);
     return exit_code;
 #else
-    return Popen(command, output, shutdown_flag);
+    wxString shell_cmd = command;
+    if (use_shell) {
+        WrapInShell(shell_cmd);
+    }
+    return Popen(shell_cmd, output, shutdown_flag);
 #endif
 }
 

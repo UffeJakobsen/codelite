@@ -1,16 +1,16 @@
 {
   "metadata": {
-    "m_generatedFilesDir": ".",
-    "m_objCounter": 221,
-    "m_includeFiles": [],
+    "m_GenerateCodeTypes": 1,
+    "m_addHandlers": true,
     "m_bitmapFunction": "wxCF667InitBitmapResources",
     "m_bitmapsFile": "UI_assistance.ai_bitmaps.cpp",
-    "m_GenerateCodeTypes": 1,
-    "m_outputFileName": "",
     "m_firstWindowId": 10000,
+    "m_generatedFilesDir": ".",
+    "m_includeFiles": [],
+    "m_objCounter": 231,
+    "m_outputFileName": "",
     "m_useEnum": true,
     "m_useUnderscoreMacro": true,
-    "m_addHandlers": true,
     "m_templateClasses": []
   },
   "windows": [
@@ -1239,10 +1239,10 @@
                           ],
                           "m_events": [
                             {
-                              "m_eventName": "wxEVT_UPDATE_UI",
-                              "m_eventClass": "wxUpdateUIEvent",
-                              "m_functionNameAndSignature": "OnInputUI(wxUpdateUIEvent& event)",
                               "m_description": "Process a wxEVT_UPDATE_UI event",
+                              "m_eventClass": "wxUpdateUIEvent",
+                              "m_eventName": "wxEVT_UPDATE_UI",
+                              "m_functionNameAndSignature": "OnInputUI(wxUpdateUIEvent& event)",
                               "m_noBody": false
                             }
                           ],
@@ -1423,10 +1423,10 @@
       ],
       "m_events": [
         {
-          "m_eventName": "wxEVT_CLOSE_WINDOW",
-          "m_eventClass": "wxCloseEvent",
-          "m_functionNameAndSignature": "OnClose(wxCloseEvent& event)",
           "m_description": "Process a close event. This event applies to wxFrame and wxDialog classes",
+          "m_eventClass": "wxCloseEvent",
+          "m_eventName": "wxEVT_CLOSE_WINDOW",
+          "m_functionNameAndSignature": "OnClose(wxCloseEvent& event)",
           "m_noBody": false
         }
       ],
@@ -1638,17 +1638,17 @@
       ],
       "m_events": [
         {
-          "m_eventName": "wxEVT_WIZARD_PAGE_CHANGING",
-          "m_eventClass": "wxWizardEvent",
-          "m_functionNameAndSignature": "OnPageChanging(wxWizardEvent& event)",
           "m_description": "The page is being changed (this event can be vetoed).",
+          "m_eventClass": "wxWizardEvent",
+          "m_eventName": "wxEVT_WIZARD_PAGE_CHANGING",
+          "m_functionNameAndSignature": "OnPageChanging(wxWizardEvent& event)",
           "m_noBody": false
         },
         {
-          "m_eventName": "wxEVT_WIZARD_FINISHED",
-          "m_eventClass": "wxWizardEvent",
-          "m_functionNameAndSignature": "OnFinished(wxWizardEvent& event)",
           "m_description": "The wizard finished button was pressed.",
+          "m_eventClass": "wxWizardEvent",
+          "m_eventName": "wxEVT_WIZARD_FINISHED",
+          "m_functionNameAndSignature": "OnFinished(wxWizardEvent& event)",
           "m_noBody": false
         }
       ],
@@ -2065,10 +2065,10 @@
                       ],
                       "m_events": [
                         {
-                          "m_eventName": "wxEVT_COMMAND_CHOICE_SELECTED",
-                          "m_eventClass": "wxCommandEvent",
-                          "m_functionNameAndSignature": "OnProviderChanged(wxCommandEvent& event)",
                           "m_description": "Process a wxEVT_COMMAND_CHOICE_SELECTED event, when an item on the list is selected.",
+                          "m_eventClass": "wxCommandEvent",
+                          "m_eventName": "wxEVT_COMMAND_CHOICE_SELECTED",
+                          "m_functionNameAndSignature": "OnProviderChanged(wxCommandEvent& event)",
                           "m_noBody": false
                         }
                       ],
@@ -2723,10 +2723,10 @@
                       ],
                       "m_events": [
                         {
-                          "m_eventName": "wxEVT_UPDATE_UI",
-                          "m_eventClass": "wxUpdateUIEvent",
-                          "m_functionNameAndSignature": "OnContextSizeUI(wxUpdateUIEvent& event)",
                           "m_description": "Process a wxEVT_UPDATE_UI event",
+                          "m_eventClass": "wxUpdateUIEvent",
+                          "m_eventName": "wxEVT_UPDATE_UI",
+                          "m_functionNameAndSignature": "OnContextSizeUI(wxUpdateUIEvent& event)",
                           "m_noBody": false
                         }
                       ],
@@ -3170,10 +3170,10 @@
                       ],
                       "m_events": [
                         {
-                          "m_eventName": "wxEVT_UPDATE_UI",
-                          "m_eventClass": "wxUpdateUIEvent",
-                          "m_functionNameAndSignature": "OnApiKeyUI(wxUpdateUIEvent& event)",
                           "m_description": "Process a wxEVT_UPDATE_UI event",
+                          "m_eventClass": "wxUpdateUIEvent",
+                          "m_eventName": "wxEVT_UPDATE_UI",
+                          "m_functionNameAndSignature": "OnApiKeyUI(wxUpdateUIEvent& event)",
                           "m_noBody": false
                         }
                       ],
@@ -3386,10 +3386,10 @@
                       ],
                       "m_events": [
                         {
-                          "m_eventName": "wxEVT_UPDATE_UI",
-                          "m_eventClass": "wxUpdateUIEvent",
-                          "m_functionNameAndSignature": "OnMaxTokensUI(wxUpdateUIEvent& event)",
                           "m_description": "Process a wxEVT_UPDATE_UI event",
+                          "m_eventClass": "wxUpdateUIEvent",
+                          "m_eventName": "wxEVT_UPDATE_UI",
+                          "m_functionNameAndSignature": "OnMaxTokensUI(wxUpdateUIEvent& event)",
                           "m_noBody": false
                         }
                       ],
@@ -3742,10 +3742,10 @@
                   ],
                   "m_events": [
                     {
-                      "m_eventName": "wxEVT_COMMAND_CHOICEBOOK_PAGE_CHANGED",
-                      "m_eventClass": "wxChoicebookEvent",
-                      "m_functionNameAndSignature": "OnEndpointChanged(wxChoicebookEvent& event)",
                       "m_description": "The page selection was changed",
+                      "m_eventClass": "wxChoicebookEvent",
+                      "m_eventName": "wxEVT_COMMAND_CHOICEBOOK_PAGE_CHANGED",
+                      "m_functionNameAndSignature": "OnEndpointChanged(wxChoicebookEvent& event)",
                       "m_noBody": false
                     }
                   ],
@@ -3921,17 +3921,17 @@
                   ],
                   "m_events": [
                     {
-                      "m_eventName": "wxEVT_UPDATE_UI",
-                      "m_eventClass": "wxUpdateUIEvent",
-                      "m_functionNameAndSignature": "OnDeleteUI(wxUpdateUIEvent& event)",
                       "m_description": "Process a wxEVT_UPDATE_UI event",
+                      "m_eventClass": "wxUpdateUIEvent",
+                      "m_eventName": "wxEVT_UPDATE_UI",
+                      "m_functionNameAndSignature": "OnDeleteUI(wxUpdateUIEvent& event)",
                       "m_noBody": false
                     },
                     {
-                      "m_eventName": "wxEVT_COMMAND_BUTTON_CLICKED",
-                      "m_eventClass": "wxCommandEvent",
-                      "m_functionNameAndSignature": "OnDelete(wxCommandEvent& event)",
                       "m_description": "Process a wxEVT_COMMAND_BUTTON_CLICKED event, when the button is clicked.",
+                      "m_eventClass": "wxCommandEvent",
+                      "m_eventName": "wxEVT_COMMAND_BUTTON_CLICKED",
+                      "m_functionNameAndSignature": "OnDelete(wxCommandEvent& event)",
                       "m_noBody": false
                     }
                   ],
@@ -4056,17 +4056,17 @@
                   ],
                   "m_events": [
                     {
-                      "m_eventName": "wxEVT_UPDATE_UI",
-                      "m_eventClass": "wxUpdateUIEvent",
-                      "m_functionNameAndSignature": "OnClearUI(wxUpdateUIEvent& event)",
                       "m_description": "Process a wxEVT_UPDATE_UI event",
+                      "m_eventClass": "wxUpdateUIEvent",
+                      "m_eventName": "wxEVT_UPDATE_UI",
+                      "m_functionNameAndSignature": "OnClearUI(wxUpdateUIEvent& event)",
                       "m_noBody": false
                     },
                     {
-                      "m_eventName": "wxEVT_COMMAND_BUTTON_CLICKED",
-                      "m_eventClass": "wxCommandEvent",
-                      "m_functionNameAndSignature": "OnClear(wxCommandEvent& event)",
                       "m_description": "Process a wxEVT_COMMAND_BUTTON_CLICKED event, when the button is clicked.",
+                      "m_eventClass": "wxCommandEvent",
+                      "m_eventName": "wxEVT_COMMAND_BUTTON_CLICKED",
+                      "m_functionNameAndSignature": "OnClear(wxCommandEvent& event)",
                       "m_noBody": false
                     }
                   ],
@@ -5429,10 +5429,10 @@
                   ],
                   "m_events": [
                     {
-                      "m_eventName": "wxEVT_COMMAND_BUTTON_CLICKED",
-                      "m_eventClass": "wxCommandEvent",
-                      "m_functionNameAndSignature": "OnEnvVariables(wxCommandEvent& event)",
                       "m_description": "Process a wxEVT_COMMAND_BUTTON_CLICKED event, when the button is clicked.",
+                      "m_eventClass": "wxCommandEvent",
+                      "m_eventName": "wxEVT_COMMAND_BUTTON_CLICKED",
+                      "m_functionNameAndSignature": "OnEnvVariables(wxCommandEvent& event)",
                       "m_noBody": false
                     }
                   ],
@@ -5578,10 +5578,10 @@
                   ],
                   "m_events": [
                     {
-                      "m_eventName": "wxEVT_UPDATE_UI",
-                      "m_eventClass": "wxUpdateUIEvent",
-                      "m_functionNameAndSignature": "OnOkUI(wxUpdateUIEvent& event)",
                       "m_description": "Process a wxEVT_UPDATE_UI event",
+                      "m_eventClass": "wxUpdateUIEvent",
+                      "m_eventName": "wxEVT_UPDATE_UI",
+                      "m_functionNameAndSignature": "OnOkUI(wxUpdateUIEvent& event)",
                       "m_noBody": false
                     }
                   ],
@@ -7257,10 +7257,10 @@
                   ],
                   "m_events": [
                     {
-                      "m_eventName": "wxEVT_COMMAND_BUTTON_CLICKED",
-                      "m_eventClass": "wxCommandEvent",
-                      "m_functionNameAndSignature": "OnHeaders(wxCommandEvent& event)",
                       "m_description": "Process a wxEVT_COMMAND_BUTTON_CLICKED event, when the button is clicked.",
+                      "m_eventClass": "wxCommandEvent",
+                      "m_eventName": "wxEVT_COMMAND_BUTTON_CLICKED",
+                      "m_functionNameAndSignature": "OnHeaders(wxCommandEvent& event)",
                       "m_noBody": false
                     }
                   ],
@@ -7406,10 +7406,10 @@
                   ],
                   "m_events": [
                     {
-                      "m_eventName": "wxEVT_UPDATE_UI",
-                      "m_eventClass": "wxUpdateUIEvent",
-                      "m_functionNameAndSignature": "OnOkUI(wxUpdateUIEvent& event)",
                       "m_description": "Process a wxEVT_UPDATE_UI event",
+                      "m_eventClass": "wxUpdateUIEvent",
+                      "m_eventName": "wxEVT_UPDATE_UI",
+                      "m_functionNameAndSignature": "OnOkUI(wxUpdateUIEvent& event)",
                       "m_noBody": false
                     }
                   ],
@@ -8245,10 +8245,10 @@
                   ],
                   "m_events": [
                     {
-                      "m_eventName": "wxEVT_COMMAND_DATAVIEW_ITEM_ACTIVATED",
-                      "m_eventClass": "wxDataViewEvent",
-                      "m_functionNameAndSignature": "OnItemActivated(wxDataViewEvent& event)",
                       "m_description": "Process a wxEVT_COMMAND_DATAVIEW_ITEM_ACTIVATED event.\nThis event is triggered by double clicking an item or pressing some special key (usually \"Enter\") when it is focused",
+                      "m_eventClass": "wxDataViewEvent",
+                      "m_eventName": "wxEVT_COMMAND_DATAVIEW_ITEM_ACTIVATED",
+                      "m_functionNameAndSignature": "OnItemActivated(wxDataViewEvent& event)",
                       "m_noBody": false
                     }
                   ],
@@ -8419,10 +8419,10 @@
                   ],
                   "m_events": [
                     {
-                      "m_eventName": "wxEVT_COMMAND_CHECKBOX_CLICKED",
-                      "m_eventClass": "wxCommandEvent",
-                      "m_functionNameAndSignature": "OnPersist(wxCommandEvent& event)",
                       "m_description": "Process a wxEVT_COMMAND_CHECKBOX_CLICKED event, when the checkbox is clicked.",
+                      "m_eventClass": "wxCommandEvent",
+                      "m_eventName": "wxEVT_COMMAND_CHECKBOX_CLICKED",
+                      "m_functionNameAndSignature": "OnPersist(wxCommandEvent& event)",
                       "m_noBody": false
                     }
                   ],
@@ -8618,6 +8618,609 @@
                   ],
                   "m_events": [],
                   "m_children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "m_type": 4421,
+      "proportion": 0,
+      "border": 5,
+      "gbSpan": "1,1",
+      "gbPosition": "0,0",
+      "m_styles": [
+        "wxDEFAULT_DIALOG_STYLE",
+        "wxRESIZE_BORDER"
+      ],
+      "m_sizerFlags": [
+        "wxALL",
+        "wxLEFT",
+        "wxRIGHT",
+        "wxTOP",
+        "wxBOTTOM"
+      ],
+      "m_properties": [
+        {
+          "type": "string",
+          "m_label": "Size:",
+          "m_value": "-1,-1"
+        },
+        {
+          "type": "string",
+          "m_label": "Minimum Size:",
+          "m_value": "-1,-1"
+        },
+        {
+          "type": "string",
+          "m_label": "Name:",
+          "m_value": "SopParamsDialogBase"
+        },
+        {
+          "type": "multi-string",
+          "m_label": "Tooltip:",
+          "m_value": ""
+        },
+        {
+          "type": "colour",
+          "m_label": "Bg Colour:",
+          "colour": "<Default>"
+        },
+        {
+          "type": "colour",
+          "m_label": "Fg Colour:",
+          "colour": "<Default>"
+        },
+        {
+          "type": "font",
+          "m_label": "Font:",
+          "m_value": ""
+        },
+        {
+          "type": "bool",
+          "m_label": "Hidden",
+          "m_value": false
+        },
+        {
+          "type": "bool",
+          "m_label": "Disabled",
+          "m_value": false
+        },
+        {
+          "type": "bool",
+          "m_label": "Focused",
+          "m_value": false
+        },
+        {
+          "type": "string",
+          "m_label": "Class Name:",
+          "m_value": ""
+        },
+        {
+          "type": "string",
+          "m_label": "Include File:",
+          "m_value": ""
+        },
+        {
+          "type": "string",
+          "m_label": "Style:",
+          "m_value": ""
+        },
+        {
+          "type": "bool",
+          "m_label": "Enable Window Persistency:",
+          "m_value": true
+        },
+        {
+          "type": "string",
+          "m_label": "Title:",
+          "m_value": ""
+        },
+        {
+          "type": "virtualFolderPicker",
+          "m_label": "Virtual Folder:",
+          "m_path": ""
+        },
+        {
+          "type": "choice",
+          "m_label": "Centre:",
+          "m_selection": 1,
+          "m_options": [
+            "",
+            "wxBOTH",
+            "wxVERTICAL",
+            "wxHORIZONTAL"
+          ]
+        },
+        {
+          "type": "string",
+          "m_label": "Inherited Class",
+          "m_value": "SopParamsDialog"
+        },
+        {
+          "type": "string",
+          "m_label": "File:",
+          "m_value": "SopParamsDialog"
+        },
+        {
+          "type": "string",
+          "m_label": "Class Decorator",
+          "m_value": ""
+        },
+        {
+          "type": "bitmapPicker",
+          "m_label": "Bitmap File (16x16)  :",
+          "m_path": ""
+        },
+        {
+          "type": "bitmapPicker",
+          "m_label": "Bitmap File (32x32)  :",
+          "m_path": ""
+        },
+        {
+          "type": "bitmapPicker",
+          "m_label": "Bitmap File (64x64)  :",
+          "m_path": ""
+        },
+        {
+          "type": "bitmapPicker",
+          "m_label": "Bitmap File (128x128):",
+          "m_path": ""
+        },
+        {
+          "type": "bitmapPicker",
+          "m_label": "Bitmap File (256x256):",
+          "m_path": ""
+        }
+      ],
+      "m_events": [],
+      "m_children": [
+        {
+          "m_type": 4401,
+          "proportion": 1,
+          "border": 5,
+          "gbSpan": "1,1",
+          "gbPosition": "0,0",
+          "m_styles": [],
+          "m_sizerFlags": [
+            "wxALL",
+            "wxLEFT",
+            "wxRIGHT",
+            "wxTOP",
+            "wxBOTTOM",
+            "wxEXPAND"
+          ],
+          "m_properties": [
+            {
+              "type": "string",
+              "m_label": "Minimum Size:",
+              "m_value": "-1,-1"
+            },
+            {
+              "type": "string",
+              "m_label": "Name:",
+              "m_value": "boxSizer223"
+            },
+            {
+              "type": "string",
+              "m_label": "Style:",
+              "m_value": ""
+            },
+            {
+              "type": "bool",
+              "m_label": "Keep as a class member",
+              "m_value": false
+            },
+            {
+              "type": "choice",
+              "m_label": "Orientation:",
+              "m_selection": 0,
+              "m_options": [
+                "wxVERTICAL",
+                "wxHORIZONTAL"
+              ]
+            }
+          ],
+          "m_events": [],
+          "m_children": [
+            {
+              "m_type": 4408,
+              "proportion": 1,
+              "border": 0,
+              "gbSpan": "1,1",
+              "gbPosition": "0,0",
+              "m_styles": [
+                "wxTAB_TRAVERSAL"
+              ],
+              "m_sizerFlags": [
+                "wxEXPAND"
+              ],
+              "m_properties": [
+                {
+                  "type": "winid",
+                  "m_label": "ID:",
+                  "m_winid": "wxID_ANY"
+                },
+                {
+                  "type": "string",
+                  "m_label": "Size:",
+                  "m_value": "-1,-1"
+                },
+                {
+                  "type": "string",
+                  "m_label": "Minimum Size:",
+                  "m_value": "-1,-1"
+                },
+                {
+                  "type": "string",
+                  "m_label": "Name:",
+                  "m_value": "m_mainPanel"
+                },
+                {
+                  "type": "multi-string",
+                  "m_label": "Tooltip:",
+                  "m_value": ""
+                },
+                {
+                  "type": "colour",
+                  "m_label": "Bg Colour:",
+                  "colour": "<Default>"
+                },
+                {
+                  "type": "colour",
+                  "m_label": "Fg Colour:",
+                  "colour": "<Default>"
+                },
+                {
+                  "type": "font",
+                  "m_label": "Font:",
+                  "m_value": ""
+                },
+                {
+                  "type": "bool",
+                  "m_label": "Hidden",
+                  "m_value": false
+                },
+                {
+                  "type": "bool",
+                  "m_label": "Disabled",
+                  "m_value": false
+                },
+                {
+                  "type": "bool",
+                  "m_label": "Focused",
+                  "m_value": false
+                },
+                {
+                  "type": "string",
+                  "m_label": "Class Name:",
+                  "m_value": ""
+                },
+                {
+                  "type": "string",
+                  "m_label": "Include File:",
+                  "m_value": ""
+                },
+                {
+                  "type": "string",
+                  "m_label": "Style:",
+                  "m_value": ""
+                }
+              ],
+              "m_events": [],
+              "m_children": [
+                {
+                  "m_type": 4401,
+                  "proportion": 1,
+                  "border": 5,
+                  "gbSpan": "1,1",
+                  "gbPosition": "0,0",
+                  "m_styles": [],
+                  "m_sizerFlags": [
+                    "wxALL",
+                    "wxLEFT",
+                    "wxRIGHT",
+                    "wxTOP",
+                    "wxBOTTOM",
+                    "wxEXPAND"
+                  ],
+                  "m_properties": [
+                    {
+                      "type": "string",
+                      "m_label": "Minimum Size:",
+                      "m_value": "-1,-1"
+                    },
+                    {
+                      "type": "string",
+                      "m_label": "Name:",
+                      "m_value": "boxSizer229"
+                    },
+                    {
+                      "type": "string",
+                      "m_label": "Style:",
+                      "m_value": ""
+                    },
+                    {
+                      "type": "bool",
+                      "m_label": "Keep as a class member",
+                      "m_value": false
+                    },
+                    {
+                      "type": "choice",
+                      "m_label": "Orientation:",
+                      "m_selection": 0,
+                      "m_options": [
+                        "wxVERTICAL",
+                        "wxHORIZONTAL"
+                      ]
+                    }
+                  ],
+                  "m_events": [],
+                  "m_children": [
+                    {
+                      "m_type": 4403,
+                      "proportion": 1,
+                      "border": 5,
+                      "gbSpan": "1,1",
+                      "gbPosition": "0,0",
+                      "m_styles": [],
+                      "m_sizerFlags": [
+                        "wxALL",
+                        "wxLEFT",
+                        "wxRIGHT",
+                        "wxTOP",
+                        "wxBOTTOM",
+                        "wxEXPAND"
+                      ],
+                      "m_properties": [
+                        {
+                          "type": "string",
+                          "m_label": "Minimum Size:",
+                          "m_value": "-1,-1"
+                        },
+                        {
+                          "type": "string",
+                          "m_label": "Name:",
+                          "m_value": "m_flexGridSizer"
+                        },
+                        {
+                          "type": "string",
+                          "m_label": "Style:",
+                          "m_value": ""
+                        },
+                        {
+                          "type": "bool",
+                          "m_label": "Keep as a class member",
+                          "m_value": true
+                        },
+                        {
+                          "type": "string",
+                          "m_label": "# Columns:",
+                          "m_value": "2"
+                        },
+                        {
+                          "type": "string",
+                          "m_label": "# Rows:",
+                          "m_value": "0"
+                        },
+                        {
+                          "type": "string",
+                          "m_label": "Growable columns:",
+                          "m_value": "1"
+                        },
+                        {
+                          "type": "string",
+                          "m_label": "Growable rows:",
+                          "m_value": ""
+                        },
+                        {
+                          "type": "string",
+                          "m_label": "Horizontal gap:",
+                          "m_value": "0"
+                        },
+                        {
+                          "type": "string",
+                          "m_label": "Vertical gap:",
+                          "m_value": "0"
+                        }
+                      ],
+                      "m_events": [],
+                      "m_children": []
+                    },
+                    {
+                      "m_type": 4467,
+                      "proportion": 0,
+                      "border": 10,
+                      "gbSpan": "1,1",
+                      "gbPosition": "0,0",
+                      "m_styles": [],
+                      "m_sizerFlags": [
+                        "wxALL",
+                        "wxLEFT",
+                        "wxRIGHT",
+                        "wxTOP",
+                        "wxBOTTOM",
+                        "wxALIGN_CENTER_HORIZONTAL"
+                      ],
+                      "m_properties": [
+                        {
+                          "type": "winid",
+                          "m_label": "ID:",
+                          "m_winid": "wxID_ANY"
+                        },
+                        {
+                          "type": "string",
+                          "m_label": "Size:",
+                          "m_value": "-1,-1"
+                        },
+                        {
+                          "type": "string",
+                          "m_label": "Minimum Size:",
+                          "m_value": "-1,-1"
+                        },
+                        {
+                          "type": "string",
+                          "m_label": "Name:",
+                          "m_value": "m_stdBtnSizer224"
+                        },
+                        {
+                          "type": "multi-string",
+                          "m_label": "Tooltip:",
+                          "m_value": ""
+                        },
+                        {
+                          "type": "colour",
+                          "m_label": "Bg Colour:",
+                          "colour": "<Default>"
+                        },
+                        {
+                          "type": "colour",
+                          "m_label": "Fg Colour:",
+                          "colour": "<Default>"
+                        },
+                        {
+                          "type": "font",
+                          "m_label": "Font:",
+                          "m_value": ""
+                        },
+                        {
+                          "type": "bool",
+                          "m_label": "Hidden",
+                          "m_value": false
+                        },
+                        {
+                          "type": "bool",
+                          "m_label": "Disabled",
+                          "m_value": false
+                        },
+                        {
+                          "type": "bool",
+                          "m_label": "Focused",
+                          "m_value": false
+                        },
+                        {
+                          "type": "string",
+                          "m_label": "Class Name:",
+                          "m_value": ""
+                        },
+                        {
+                          "type": "string",
+                          "m_label": "Include File:",
+                          "m_value": ""
+                        },
+                        {
+                          "type": "string",
+                          "m_label": "Style:",
+                          "m_value": ""
+                        }
+                      ],
+                      "m_events": [],
+                      "m_children": [
+                        {
+                          "m_type": 4468,
+                          "proportion": 0,
+                          "border": 5,
+                          "gbSpan": "1,1",
+                          "gbPosition": "0,0",
+                          "m_styles": [],
+                          "m_sizerFlags": [
+                            "wxALL",
+                            "wxLEFT",
+                            "wxRIGHT",
+                            "wxTOP",
+                            "wxBOTTOM"
+                          ],
+                          "m_properties": [
+                            {
+                              "type": "choice",
+                              "m_label": "ID:",
+                              "m_selection": 0,
+                              "m_options": [
+                                "wxID_OK",
+                                "wxID_YES",
+                                "wxID_SAVE",
+                                "wxID_APPLY",
+                                "wxID_CLOSE",
+                                "wxID_NO",
+                                "wxID_CANCEL",
+                                "wxID_HELP",
+                                "wxID_CONTEXT_HELP"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "m_label": "Name:",
+                              "m_value": "m_button225"
+                            },
+                            {
+                              "type": "multi-string",
+                              "m_label": "Tooltip:",
+                              "m_value": ""
+                            },
+                            {
+                              "type": "bool",
+                              "m_label": "Default Button",
+                              "m_value": true
+                            }
+                          ],
+                          "m_events": [],
+                          "m_children": []
+                        },
+                        {
+                          "m_type": 4468,
+                          "proportion": 0,
+                          "border": 5,
+                          "gbSpan": "1,1",
+                          "gbPosition": "0,0",
+                          "m_styles": [],
+                          "m_sizerFlags": [
+                            "wxALL",
+                            "wxLEFT",
+                            "wxRIGHT",
+                            "wxTOP",
+                            "wxBOTTOM"
+                          ],
+                          "m_properties": [
+                            {
+                              "type": "choice",
+                              "m_label": "ID:",
+                              "m_selection": 6,
+                              "m_options": [
+                                "wxID_OK",
+                                "wxID_YES",
+                                "wxID_SAVE",
+                                "wxID_APPLY",
+                                "wxID_CLOSE",
+                                "wxID_NO",
+                                "wxID_CANCEL",
+                                "wxID_HELP",
+                                "wxID_CONTEXT_HELP"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "m_label": "Name:",
+                              "m_value": "m_button226"
+                            },
+                            {
+                              "type": "multi-string",
+                              "m_label": "Tooltip:",
+                              "m_value": ""
+                            },
+                            {
+                              "type": "bool",
+                              "m_label": "Default Button",
+                              "m_value": false
+                            }
+                          ],
+                          "m_events": [],
+                          "m_children": []
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }

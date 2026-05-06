@@ -12,6 +12,7 @@
 #endif
 #include "ai/EndpointModelSelector.hpp"
 #include "ai/LLMManager.hpp"
+#include "ai/SopParamsDialog.hpp"
 #include "aui/clAuiToolBarArt.h"
 #include "clAnsiEscapeCodeColourBuilder.hpp"
 #include "clSTCHelper.hpp"
@@ -964,7 +965,13 @@ void ChatAIWindow::DoCommandSave()
 void ChatAIWindow::DoRunSop(const SopInfo& sop)
 {
     clDEBUG() << "Running SOP:" << sop.title << endl;
-    // TODO: build Sop Parameters dialogue with the selected SOP dialogue and present it to the user.
+    SopParamsDialog dlg{EventNotifier::Get()->TopFrame(), sop};
+    if (dlg.ShowModal() != wxID_OK) {
+        return;
+    }
+
+    auto params = dlg.GetParams();
+    llm::Manager::GetInstance().RunSOP(this, sop.full_sop, params, nullptr, assistant::ChatOptions::kDefault, nullptr);
 }
 
 void ChatAIWindow::DoCommandContext()

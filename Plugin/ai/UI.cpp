@@ -852,3 +852,64 @@ ToolTrustLevelDlgBase::~ToolTrustLevelDlgBase()
     m_dvListCtrlOptions->Unbind(wxEVT_COMMAND_DATAVIEW_ITEM_ACTIVATED, &ToolTrustLevelDlgBase::OnItemActivated, this);
     m_checkBox->Unbind(wxEVT_COMMAND_CHECKBOX_CLICKED, &ToolTrustLevelDlgBase::OnPersist, this);
 }
+
+SopParamsDialogBase::SopParamsDialogBase(
+    wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style)
+    : wxDialog(parent, id, title, pos, size, style)
+{
+    if (!bBitmapLoaded) {
+        // We need to initialise the default bitmap handler
+        wxXmlResource::Get()->AddHandler(new wxBitmapXmlHandler);
+        wxCF667InitBitmapResources();
+        bBitmapLoaded = true;
+    }
+
+    wxBoxSizer* boxSizer223 = new wxBoxSizer(wxVERTICAL);
+    this->SetSizer(boxSizer223);
+
+    m_mainPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDLG_UNIT(this, wxSize(-1, -1)), wxTAB_TRAVERSAL);
+
+    boxSizer223->Add(m_mainPanel, 1, wxEXPAND, WXC_FROM_DIP(0));
+
+    wxBoxSizer* boxSizer229 = new wxBoxSizer(wxVERTICAL);
+    m_mainPanel->SetSizer(boxSizer229);
+
+    m_flexGridSizer = new wxFlexGridSizer(0, 2, 0, 0);
+    m_flexGridSizer->SetFlexibleDirection(wxBOTH);
+    m_flexGridSizer->SetNonFlexibleGrowMode(wxFLEX_GROWMODE_SPECIFIED);
+    m_flexGridSizer->AddGrowableCol(1);
+
+    boxSizer229->Add(m_flexGridSizer, 1, wxALL | wxEXPAND, WXC_FROM_DIP(5));
+
+    m_stdBtnSizer224 = new wxStdDialogButtonSizer();
+
+    boxSizer229->Add(m_stdBtnSizer224, 0, wxALL | wxALIGN_CENTER_HORIZONTAL, WXC_FROM_DIP(10));
+
+    m_button225 =
+        new wxButton(m_mainPanel, wxID_OK, wxT(""), wxDefaultPosition, wxDLG_UNIT(m_mainPanel, wxSize(-1, -1)), 0);
+    m_button225->SetDefault();
+    m_stdBtnSizer224->AddButton(m_button225);
+
+    m_button226 =
+        new wxButton(m_mainPanel, wxID_CANCEL, wxT(""), wxDefaultPosition, wxDLG_UNIT(m_mainPanel, wxSize(-1, -1)), 0);
+    m_stdBtnSizer224->AddButton(m_button226);
+    m_stdBtnSizer224->Realize();
+
+    SetName(wxT("SopParamsDialogBase"));
+    SetSize(wxDLG_UNIT(this, wxSize(-1, -1)));
+    if (GetSizer()) {
+        GetSizer()->Fit(this);
+    }
+    if (GetParent()) {
+        CentreOnParent(wxBOTH);
+    } else {
+        CentreOnScreen(wxBOTH);
+    }
+    if (!wxPersistenceManager::Get().Find(this)) {
+        wxPersistenceManager::Get().RegisterAndRestore(this);
+    } else {
+        wxPersistenceManager::Get().Restore(this);
+    }
+}
+
+SopParamsDialogBase::~SopParamsDialogBase() {}

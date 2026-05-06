@@ -124,7 +124,8 @@ public:
      */
     static int SafeExecuteCommand(const wxString& command,
                                   wxArrayString& output,
-                                  std::shared_ptr<std::atomic_bool> shutdown_flag = nullptr);
+                                  std::shared_ptr<std::atomic_bool> shutdown_flag = nullptr,
+                                  bool use_shell = false);
 
     /**
      * @brief Executes a shell command safely, optionally changing to a working directory first.

@@ -311,4 +311,25 @@ public:
     virtual ~ToolTrustLevelDlgBase();
 };
 
+class SopParamsDialogBase : public wxDialog
+{
+protected:
+    wxPanel* m_mainPanel;
+    wxFlexGridSizer* m_flexGridSizer;
+    wxStdDialogButtonSizer* m_stdBtnSizer224;
+    wxButton* m_button225;
+    wxButton* m_button226;
+
+protected:
+public:
+    wxPanel* GetMainPanel() { return m_mainPanel; }
+    SopParamsDialogBase(wxWindow* parent,
+                        wxWindowID id = wxID_ANY,
+                        const wxString& title = wxT(""),
+                        const wxPoint& pos = wxDefaultPosition,
+                        const wxSize& size = wxSize(-1, -1),
+                        long style = wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
+    virtual ~SopParamsDialogBase();
+};
+
 #endif

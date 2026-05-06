@@ -763,8 +763,20 @@ FunctionResult ToolShellExecute(const assistant::json& args)
     EnvSetter env;
     ProcUtils::SafeExecuteShellCommand(cmd, wd, output_arr, termination_flag.GetFlag());
     if (termination_flag.IsSet()) {
-        return FunctionResult{.isError = true, .text = "Command terminated by user"};
+        return FunctionResult{
+            .isError = true,
+            .text = "Command terminated by user",
+        };
     }
+
+    size_t lines = output_arr.size();
+    if (lines >= 50) {
+        return FunctionResult{
+            .isError = true,
+            .text = "The tool output is too large. Please refine your command.",
+        };
+    }
+
     wxString output = StringUtils::Join(output_arr);
     func_result.isError = false;
     func_result.text = output.ToStdString(wxConvUTF8);
