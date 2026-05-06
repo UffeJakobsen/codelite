@@ -776,8 +776,12 @@ FunctionResult ToolShellExecute(const assistant::json& args)
         };
     }
 
-    size_t lines = output_arr.size();
-    if (lines >= 50) {
+    size_t lines_count = output_arr.size();
+    constexpr size_t kMaxLinesOutput = 200;
+    if (lines_count > kMaxLinesOutput) {
+        wxString message;
+        message << _("The output for the command: `") << cmd << _("` is too large.");
+        llm::Manager::GetInstance().PrintMessage(message, IconType::kError);
         return FunctionResult{
             .isError = true,
             .text = "The tool output is too large. Please refine your command.",
