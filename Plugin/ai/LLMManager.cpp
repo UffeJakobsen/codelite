@@ -1457,10 +1457,10 @@ void Manager::SetCachingPolicy(llm::CachePolicy policy)
 Manager::PromptFuture Manager::PromptUser(const wxString& msg, IconType icon)
 {
     CHECK_PTR_RET_NULL(m_client);
-    CHECK_PTR_RET_NULL(GetChatWindow());
+    CHECK_PTR_RET_NULL(GetChatWindow(false));
 
     auto cb = [msg, icon, this]() -> Manager::PromptFuture {
-        auto chat_win = GetChatWindow();
+        auto chat_win = GetChatWindow(false);
         wxString symbol = IconType_ToString(icon);
         if (!symbol.empty()) {
             symbol << " ";
@@ -1489,10 +1489,10 @@ Manager::PromptFuture Manager::PromptUser(const wxString& msg, IconType icon)
 void Manager::PrintMessage(const wxString& msg, IconType icon)
 {
     CHECK_PTR_RET(m_client);
-    CHECK_PTR_RET(GetChatWindow());
+    CHECK_PTR_RET(GetChatWindow(false));
 
     auto cb = [msg, icon, this]() {
-        auto chat_win = GetChatWindow();
+        auto chat_win = GetChatWindow(false);
         wxString symbol = IconType_ToString(icon) + " ";
 
         wxString current_text = chat_win->GetText();

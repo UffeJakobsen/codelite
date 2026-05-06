@@ -58,7 +58,7 @@ public:
      */
     void AppendTextAndStyle(const wxString& text);
 
-    ChatAIWindow* GetChatWindow();
+    ChatAIWindow* GetChatWindow(bool ensure_visibile);
 
 private:
     void OnInitDone(wxCommandEvent& event);

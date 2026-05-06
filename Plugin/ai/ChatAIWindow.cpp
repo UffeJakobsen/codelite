@@ -777,29 +777,6 @@ void ChatAIWindow::OnStop(wxCommandEvent& event)
     llm::Manager::GetInstance().StoreCurrentConverstation(m_stcOutput->GetText(), "__last_session__");
     DoClearOutputView();
     llm::Manager::GetInstance().Restart();
-
-    // Restore the last session
-    wxString active_endpoint = m_model_selector->GetEndpoint();
-    const auto& store = llm::Manager::GetInstance().GetHistoryStore();
-    auto v = store.List(active_endpoint);
-    auto iter = std::find_if(
-        v.begin(), v.end(), [](const llm::HistoryEntry& entry) { return entry.label == "__last_session__"; });
-    if (iter == v.end()) {
-        return;
-    }
-
-    auto chat = store.Get(active_endpoint, *iter);
-    if (!chat.has_value()) {
-        return;
-    }
-
-    // Load the chat and style the view
-    llm::Manager::GetInstance().LoadConversation(chat.value());
-    wxBusyCursor bc{};
-    wxWindowUpdateLocker locker{m_stcOutput};
-    AppendOutput(chat.value().content_, true);
-    StyleOutput();
-    m_stcInput->CallAfter(&wxStyledTextCtrl::SetFocus);
 }
 
 void ChatAIWindow::OnStopUI(wxUpdateUIEvent& event) { event.Enable(llm::Manager::GetInstance().IsBusy()); }

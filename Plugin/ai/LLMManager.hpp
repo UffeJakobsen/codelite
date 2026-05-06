@@ -554,10 +554,10 @@ public:
 
     const std::vector<wxString>& GetAvailablePlaceHolders() const;
 
-    inline ChatAIWindow* GetChatWindow()
+    inline ChatAIWindow* GetChatWindow(bool ensure_visibile)
     {
         CHECK_PTR_RET_NULL(m_chatAI.get());
-        return m_chatAI->GetChatWindow();
+        return m_chatAI->GetChatWindow(ensure_visibile);
     }
 
     inline double GetLastRequestCost() const

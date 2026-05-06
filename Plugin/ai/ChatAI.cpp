@@ -69,14 +69,16 @@ void ChatAI::EnsureVisible()
     }
 }
 
-ChatAIWindow* ChatAI::GetChatWindow()
+ChatAIWindow* ChatAI::GetChatWindow(bool ensure_visibile)
 {
-    EnsureVisible();
+    if (ensure_visibile) {
+        EnsureVisible();
+    }
     return m_chatWindow;
 }
 
 void ChatAI::AppendTextAndStyle(const wxString& text)
 {
-    auto chat_window = GetChatWindow();
+    auto chat_window = GetChatWindow(false);
     chat_window->AppendText(text, true);
 }
