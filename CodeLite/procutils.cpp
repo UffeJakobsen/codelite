@@ -499,7 +499,6 @@ int ProcUtils::SafeExecuteCommand(const wxString& command,
                                   std::shared_ptr<std::atomic_bool> shutdown_flag,
                                   bool use_shell)
 {
-#ifdef __WXMSW__
     auto argv = StringUtils::BuildArgv(command);
     auto argv_std = StringUtils::ToStdStrings(argv);
     std::string accumlated_output;
@@ -527,13 +526,6 @@ int ProcUtils::SafeExecuteCommand(const wxString& command,
     // Convert buff into wxArrayString
     output = ::wxStringTokenize(out_str, "\n", wxTOKEN_STRTOK);
     return exit_code;
-#else
-    wxString shell_cmd = command;
-    if (use_shell) {
-        WrapInShell(shell_cmd);
-    }
-    return Popen(shell_cmd, output, shutdown_flag);
-#endif
 }
 
 wxString ProcUtils::SafeExecuteCommand(const wxString& command)
