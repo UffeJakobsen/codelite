@@ -666,6 +666,9 @@ CanInvokeToolResult ToolShellExecuteConfirm(const std::string& tool_name, const 
             kShellExecute, command_string, llm::PathMatch::kExactMatchOnly);
 
     if (is_trusted) {
+        wxString trust_message;
+        trust_message << _("`ShellExecute` is trusted for the command: `") << command_string << "`";
+        llm::Manager::GetInstance().PrintMessage(trust_message, IconType::kInfo);
         return CanInvokeToolResult{
             .can_invoke = true,
             .reason = "Command is trusted.",
