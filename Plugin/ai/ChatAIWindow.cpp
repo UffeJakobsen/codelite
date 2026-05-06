@@ -721,11 +721,7 @@ void ChatAIWindow::StyleOutput()
     }
 }
 
-void ChatAIWindow::OnWorkspaceLoaded(clWorkspaceEvent& event)
-{
-    event.Skip();
-    CallAfter(&ChatAIWindow::ScanForAgents);
-}
+void ChatAIWindow::OnWorkspaceLoaded(clWorkspaceEvent& event) { event.Skip(); }
 
 void ChatAIWindow::OnWorkspaceClosed(clWorkspaceEvent& event) { event.Skip(); }
 
@@ -996,83 +992,6 @@ void ChatAIWindow::DoCommandContext()
     wxArrayString paths;
     openFileDialog.GetPaths(paths);
     AddFilesToContext(paths);
-}
-
-void ChatAIWindow::LoadSummaryContent()
-{
-    auto result = CreateSummaryFolder();
-    if (!result.ok()) {
-        clWARNING() << result.message();
-        return;
-    }
-}
-
-void ChatAIWindow::ScanForAgents()
-{
-    if (!llm::Manager::GetInstance().IsAvailable()) {
-        return;
-    }
-    LoadSummaryContent();
-}
-
-clStatus ChatAIWindow::CreateSummaryFolder()
-{
-    auto workspace = clWorkspaceManager::Get().GetWorkspace();
-    if (!workspace) {
-        return StatusOther("No workspace is opened");
-    }
-
-    bool summary_dir_exists{false};
-    wxString summary_folder = workspace->GetDir();
-    summary_folder << "/" << ".agents/summary";
-    if (workspace->IsRemote()) {
-#if USE_SFTP
-        summary_dir_exists = clSFTPManager::Get().IsDirExists(summary_folder, workspace->GetSshAccount());
-#endif
-    } else {
-        summary_dir_exists = wxFileName::DirExists(summary_folder);
-    }
-
-    if (summary_dir_exists) {
-        return StatusOk();
-    }
-
-    wxStandardID answer = ::PromptForYesNoDialogWithCheckbox(
-        _("Would you like to generate a codebase summary optimized for AI assistance?"), "codebase-summary");
-    if (answer != wxStandardID::wxID_YES) {
-        return StatusOther("User declined");
-    }
-
-    // Tell the model to run the SOP.
-    wxFileName codebase_summary_sop{clStandardPaths::Get().GetDataDir(), "codebase-summary.sop.md"};
-    codebase_summary_sop.AppendDir("agent-sops");
-
-    wxString content;
-    if (!FileUtils::ReadFileContent(codebase_summary_sop, content)) {
-        // Error.
-        return StatusIOError("Could not read codebase summary SOP. A broken installation?");
-    }
-
-    auto completion_handler = std::make_shared<llm::CompletionHandler>();
-    completion_handler->SetSuccessCallback([summary_folder]() {
-        wxString msg;
-        msg << _("Successfully created codebase summary folder: ") << summary_folder
-            << _("\n\nYou can now load it into the AI context window by:\n")
-            << _("1. Typing /context in the AI chat box\n") << _("2. Selecting the generated markdown files.");
-
-        ::clMessageBox(msg);
-    });
-
-    llm::Manager::GetInstance().RunSOP(this,
-                                       content,
-                                       {
-                                           {"codebase_path", workspace->GetDir()},
-                                           {"output_dir", wxString() << workspace->GetDir() << "/.agents/summary"},
-                                       },
-                                       nullptr,
-                                       assistant::ChatOptions::kDefault,
-                                       completion_handler);
-    return StatusOk();
 }
 
 std::vector<SopInfo> ChatAIWindow::ListSOPs()

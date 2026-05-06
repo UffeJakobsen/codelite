@@ -20,8 +20,6 @@ High:
 -----
 
 - GDB: use the new terminal to launch and avoid opening custom terminals for this purpose.
-- Add new /run-sop command.
-- Remove the auto "generate summary" code, user should be running it by running the `/run-sop` and selecting the correct SOP.
 
 Medium:
 -----

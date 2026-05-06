@@ -141,9 +141,6 @@ protected:
     void OnWorkspaceClosed(clWorkspaceEvent& event);
     void LoadGlobalConfig();
     void RestoreUI();
-    void ScanForAgents();
-    void LoadSummaryContent();
-    clStatus CreateSummaryFolder();
 
     /// LLM events
     void OnLLMConfigUpdate(clLLMEvent& event);
