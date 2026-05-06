@@ -559,29 +559,12 @@ CanInvokeToolResult ApplyPatchConfirm(const std::string& tool_name, assistant::j
     bool is_trusted = llm::Manager::GetInstance().CheckIfPathIsAllowedForTool(kApplyPatch, fullpath);
 
     // Apply patch "Trust" for this session (per path).
-    if (!is_trusted) {
-        wxString message;
-        message << _("Will apply the following patch:") << "\n```diff\n" << patch << "\n```\n";
-        return llm::Manager::GetInstance().PromptUserYesNoTrustQuestion(message, [&config, &fullpath]() {
-            // User trusts the tool for this path,add it to the trust store.
-            wxString dirpath = FileUtils::GetPath(fullpath);
-
-            std::vector<std::pair<wxString, wxString>> options{
-                {wxString::Format(_("Specific path: %s"), fullpath), fullpath},
-                {wxString::Format(_("Entire directory: %s/*"), dirpath), dirpath + "/*"},
-                {_("Entire tool"), "*"},
-            };
-
-            auto result = llm::Manager::GetInstance().ShowTrustLevelDialog(kApplyPatch, options);
-            if (result.has_value()) {
-                config.AddTrustedTool(kApplyPatch, result->first, result->second);
-                if (result->second) {
-                    config.Save(false);
-                }
-            }
-        });
-    } else {
+    if (is_trusted) {
         // This path is trusted.
+        wxString trust_message;
+        trust_message << "`" << kApplyPatch << _("` is trusted for path: `") << fullpath << "`";
+        llm::Manager::GetInstance().PrintMessage(trust_message, IconType::kInfo);
+
         wxString message;
         message << _("Will apply the following patch:") << "\n```diff\n" << patch << "\n```\n";
         llm::Manager::GetInstance().PrintMessage(message, IconType::kInfo);
@@ -589,6 +572,27 @@ CanInvokeToolResult ApplyPatchConfirm(const std::string& tool_name, assistant::j
             .can_invoke = true,
         };
     }
+
+    wxString message;
+    message << _("Will apply the following patch:") << "\n```diff\n" << patch << "\n```\n";
+    return llm::Manager::GetInstance().PromptUserYesNoTrustQuestion(message, [&config, &fullpath]() {
+        // User trusts the tool for this path,add it to the trust store.
+        wxString dirpath = FileUtils::GetPath(fullpath);
+
+        std::vector<std::pair<wxString, wxString>> options{
+            {wxString::Format(_("Specific path: %s"), fullpath), fullpath},
+            {wxString::Format(_("Entire directory: %s/*"), dirpath), dirpath + "/*"},
+            {_("Entire tool"), "*"},
+        };
+
+        auto result = llm::Manager::GetInstance().ShowTrustLevelDialog(kApplyPatch, options);
+        if (result.has_value()) {
+            config.AddTrustedTool(kApplyPatch, result->first, result->second);
+            if (result->second) {
+                config.Save(false);
+            }
+        }
+    });
 }
 
 FunctionResult ApplyPatch([[maybe_unused]] const assistant::json& args)
@@ -667,7 +671,7 @@ CanInvokeToolResult ToolShellExecuteConfirm(const std::string& tool_name, const 
 
     if (is_trusted) {
         wxString trust_message;
-        trust_message << _("`ShellExecute` is trusted for the command: `") << command_string << "`";
+        trust_message << "`" << kShellExecute << _("` is trusted for the command: `") << command_string << "`";
         llm::Manager::GetInstance().PrintMessage(trust_message, IconType::kInfo);
         return CanInvokeToolResult{
             .can_invoke = true,
